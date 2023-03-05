@@ -56,7 +56,7 @@ function drawBlock(block, color) {
 
 function drawSnake() {
   for (let i = 0; i < snake.length; i++) {
-    drawBlock(snake[i], "blue");
+    drawBlock(snake[i], "hsl(" + i * 10 + "deg 100% 50%)");
   }
 }
 
@@ -64,8 +64,10 @@ function createFood() {
   food.x = Math.floor(Math.random() * 40);
   food.y = Math.floor(Math.random() * 40);
 }
+var foodColor = 0;
 function drawFood() {
-  drawBlock(food, "green");
+  drawBlock(food, "hsl("+ foodColor +"deg 100% 50%)");
+  foodColor = foodColor + 10;
 }
 
 function moveSnake() {
