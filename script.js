@@ -14,7 +14,13 @@ let food = {};
 let snake = [];
 let direction = "right";
 let highScore = 0;
+let stored = window.localStorage.getItem("saveHighscore");
 let score = 0;
+
+if(stored != null){
+  highScore = parseInt(stored);
+  highScoreDiv.innerHTML = "Highscore: " + highScore;
+}
 
 function keyHandler(e) {
   if (e.key === "ArrowRight" && direction !== "left") {
@@ -56,7 +62,7 @@ function drawBlock(block, color) {
 
 function drawSnake() {
   for (let i = 0; i < snake.length; i++) {
-    drawBlock(snake[i], "hsl(" + i * 10 + "deg 100% 50%)");
+    drawBlock(snake[i], "hsl("+ 180 + i * 10 + "deg 100% 50%)");
   }
 }
 
@@ -89,6 +95,7 @@ function moveSnake() {
     scoreDiv.innerHTML = "Score: " + score;
     if (score > highScore) {
       highScore = score;
+      window.localStorage.setItem("saveHighscore", highScore);
       highScoreDiv.innerHTML = "Highscore: " + highScore;
     }
   } else {
